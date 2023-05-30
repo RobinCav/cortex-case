@@ -35,6 +35,7 @@
 
   .align-container {
     display: flex;
+    margin-bottom: 50px;
 
   }
   .nav-container {
@@ -67,6 +68,7 @@
     color: black;
     text-decoration: none;
     padding: 4px;
+    font-size: 10px;
   }
   
   .router-link-active {
@@ -76,7 +78,7 @@
   }
   
   .router-link-inactive:hover {
-    background-color: #ccc;
+    background-color: #ededed;
   }
 
   .router-link-active:active {

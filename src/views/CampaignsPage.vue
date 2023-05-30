@@ -2,15 +2,13 @@
   <div>
     <HeaderContainer title="Campaigns"></HeaderContainer>
     <NavBar></NavBar>
-
     <LoadingSpinner v-if="isLoading" />
    
-
-    <!-- Display the table once data is fetched -->
-    <table v-if="!isLoading">
+    <div class="table-container">
+    <table v-if="!isLoading" class="campaign-table">
       <thead>
-        <tr>
-          <th @click="sortCampaigns('name')">Name</th>
+        <tr class="campaign-table-head">
+          <th @click="sortCampaigns('name')">Campaign Name</th>
           <th @click="sortCampaigns('campaignManager.name')">Campaign Manager</th>
           <th @click="sortCampaigns('type')">Campaign Type</th>
           <th @click="sortCampaigns('startDate')">Start Date</th>
@@ -18,7 +16,7 @@
           <th @click="sortCampaigns('budget')">Budget</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="campaign-table-body">
         <tr v-for="campaign in sortedCampaigns" :key="campaign.id">
           <td>{{ campaign.name }}</td>
           <td>{{ campaign.campaignManager.name }}</td>
@@ -29,6 +27,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </template>
 
@@ -57,14 +56,14 @@ export default defineComponent({
 
     const fetchCampaigns = async () => {
       try {
-        isLoading.value = true; // Set loading state to true
+        isLoading.value = true; 
 
         campaigns.value = await apiClient.requestCampaigns();
 
-        isLoading.value = false; // Set loading state to false once data is fetched
+        isLoading.value = false; 
       } catch (error) {
         console.error('Error fetching campaigns:', error);
-        isLoading.value = false; // Set loading state to false if an error occurs
+        isLoading.value = false; 
       }
     };
 
@@ -85,15 +84,15 @@ export default defineComponent({
 
     const sortCampaigns = (key: string) => {
       if (sortKey.value === key) {
-        // If the same column is clicked again, toggle the sort order
+
         sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
       } else {
-        // If a different column is clicked, set the sort key to the clicked column and reset the sort order to ascending
+     
         sortKey.value = key;
         sortOrder.value = 'asc';
       }
 
-      // Sort the campaigns based on the selected column and sort order
+
       campaigns.value = orderBy(campaigns.value, sortKey.value, sortOrder.value);
     };
 
@@ -101,11 +100,48 @@ export default defineComponent({
       campaigns,
       getCampaignTypeName,
       isLoading,
-      sortedCampaigns: campaigns, // Use a computed property for sorted campaigns to reactively update the table
+      sortedCampaigns: campaigns,
       sortCampaigns,
     };
   },
 });
 </script>
+
+
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Lora&family=Merriweather&family=Wix+Madefor+Display:wght@500;600;700;800&display=swap');
+
+.campaign-table {
+  background-color: white;
+  box-shadow: 0 0 2px black, 0 0 4px black, 0 0 6px black;
+  font-family: 'Arvo', serif;
+  padding: 40px;
+  border-radius: 5px;
+  min-width: 50%;
+
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campaign-table-head th {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  padding: 20px;
+  text-align: left;
+}
+
+.campaign-table-body td{
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+</style>
+
 
 

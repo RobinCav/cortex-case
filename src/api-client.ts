@@ -248,19 +248,6 @@
 			return this.clients
 		}
 
-		/**
-		 * Returns user if match or else null
-		 */
-		/*public async login(email: string, password: string): Promise<User | null> {
-			const user = this.users.find((user) => user.email === email && user.password === password);
-			return this.delay(this.simulatedRequestTime).then(() => {
-			if (user) {
-				return user;
-			} else {
-				return null;
-			}
-			});
-		}*/
 
 		public async login(email: string, password: string): Promise<User | null> {
 			const user = this.users.find((user) => user.email === email && user.password === password);

@@ -2,16 +2,13 @@
   <div>
     <HeaderContainer title="Clients"></HeaderContainer>
     <NavBar></NavBar>
-   
-    <!-- Display the loading spinner when fetching data -->
     <LoadingSpinner v-if="isLoading" />
 
-    <!-- Display the table once data is fetched -->
     <div class="table-container">
     <table v-if="!isLoading" class="client-table">
       <thead >
         <tr class="client-table-head">
-          <th @click="sortClients('name')" >Name</th>
+          <th @click="sortClients('name')" >Client Name</th>
           <th @click="sortClients('defaultCampaignManager.name')">Campaign Manager</th>
         </tr>
       </thead>
@@ -53,14 +50,14 @@ export default defineComponent({
 
     const fetchClients = async () => {
       try {
-        isLoading.value = true; // Set loading state to true
+        isLoading.value = true; 
 
         clients.value = await apiClient.requestClients();
 
-        isLoading.value = false; // Set loading state to false once data is fetched
+        isLoading.value = false;
       } catch (error) {
         console.error('Error fetching clients:', error);
-        isLoading.value = false; // Set loading state to false if an error occurs
+        isLoading.value = false; 
       }
     };
 
@@ -68,22 +65,21 @@ export default defineComponent({
 
     const sortClients = (key: string) => {
       if (sortKey.value === key) {
-        // If the same column is clicked again, toggle the sort order
+      
         sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
       } else {
-        // If a different column is clicked, set the sort key to the clicked column and reset the sort order to ascending
+      
         sortKey.value = key;
         sortOrder.value = 'asc';
       }
 
-      // Sort the clients based on the selected column and sort order
       clients.value = orderBy(clients.value, key, sortOrder.value);
     };
 
     return {
       clients,
       isLoading,
-      sortedClients: clients, // Use a computed property for sorted clients to reactively update the table
+      sortedClients: clients, 
       sortClients,
     };
   },
@@ -92,9 +88,13 @@ export default defineComponent({
 
 <style scoped>
 
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Lora&family=Merriweather&family=Wix+Madefor+Display:wght@500;600;700;800&display=swap');
+
 .client-table {
   background-color: white;
-  padding: 50px;
+  padding: 40px;
+  font-family: 'Arvo', serif;
+  box-shadow: 0 0 2px black, 0 0 4px black, 0 0 6px black;
   border-radius: 5px;
   width: 50%;
 
@@ -102,6 +102,7 @@ export default defineComponent({
 
 .table-container {
   display: flex;
+
   justify-content: center;
   align-items: center;
 }
@@ -111,6 +112,7 @@ export default defineComponent({
   border-right: 1px solid black;
   border-left: 1px solid black;
   padding: 20px;
+  text-align: left;
 }
 
 .client-table-body td{

@@ -2,11 +2,9 @@
   <div>
     <HeaderContainer title="Users"></HeaderContainer>
     <NavBar></NavBar>
-
-    <!-- Display the loading spinner when fetching data -->
     <LoadingSpinner v-if="isLoading" />
 
-    <!-- Display the table once data is fetched -->
+
     <div class="table-container">
     <table v-if="!isLoading" class="user-table">
       <thead>
@@ -31,7 +29,6 @@ import { defineComponent, ref, onMounted } from 'vue';
 import { ApiClient, User } from '@/api-client';
 import NavBar from '@/components/NavBar.vue';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
-import LogoutButton from '@/components/LogoutButton.vue';
 import { orderBy } from 'lodash';
 import HeaderContainer from '@/components/HeaderContainer.vue';
 
@@ -42,7 +39,6 @@ export default defineComponent({
   components: {
     NavBar,
     LoadingSpinner,
-    LogoutButton,
     HeaderContainer,
   },
   setup() {
@@ -53,14 +49,14 @@ export default defineComponent({
 
     const fetchUsers = async () => {
       try {
-        isLoading.value = true; // Set loading state to true
+        isLoading.value = true; 
 
         users.value = await apiClient.requestUsers();
 
-        isLoading.value = false; // Set loading state to false once data is fetched
+        isLoading.value = false; 
       } catch (error) {
         console.error('Error fetching users:', error);
-        isLoading.value = false; // Set loading state to false if an error occurs
+        isLoading.value = false; 
       }
     };
 
@@ -68,22 +64,21 @@ export default defineComponent({
 
     const sortUsers = (key: string) => {
       if (sortKey.value === key) {
-        // If the same column is clicked again, toggle the sort order
+      
         sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
       } else {
-        // If a different column is clicked, set the sort key to the clicked column and reset the sort order to ascending
+  
         sortKey.value = key;
         sortOrder.value = 'asc';
       }
 
-      // Sort the users based on the selected column and sort order
       users.value = orderBy(users.value, key, sortOrder.value);
     };
 
     return {
       users,
       isLoading,
-      sortedUsers: users, // Use a computed property for sorted users to reactively update the table
+      sortedUsers: users, 
       sortUsers,
     };
   },
@@ -91,17 +86,21 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Lora&family=Merriweather&family=Wix+Madefor+Display:wght@500;600;700;800&display=swap');
 
 .user-table {
   background-color: white;
-  padding: 50px;
+  padding: 40px;
+  font-family: 'Arvo', serif;
   border-radius: 5px;
+  box-shadow: 0 0 2px black, 0 0 4px black, 0 0 6px black;
   width: 50%;
 
 }
 
 .table-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -111,6 +110,7 @@ export default defineComponent({
   border-right: 1px solid black;
   border-left: 1px solid black;
   padding: 20px;
+  text-align: left;
 }
 
 .user-table-body td{
