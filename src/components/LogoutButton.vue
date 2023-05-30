@@ -15,8 +15,7 @@
       const logout = () => {
   
         Cookies.remove('userId');
-        
-        // Navigate to the landing page
+
         router.push('/');
       };
   

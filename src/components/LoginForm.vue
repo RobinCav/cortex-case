@@ -2,6 +2,7 @@
     <div >
       <form class="form-container" @submit.prevent="loginUser">
         <div>
+        <div class="input-container">
           <label for="email">Email</label>
           <input type="email" id="email" v-model="email" />
         </div>
@@ -9,10 +10,12 @@
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" />
         </div>
+    </div>
         <button class="login-button-form" type="submit">Login</button>
       </form>
       <h2 v-if="loggedInUser">{{ loggedInUser.name }}</h2>
     </div>
+
   </template>
   
   <script lang="ts">
@@ -37,14 +40,14 @@
         loggedInUser.value = currentUser;
 
         if (currentUser) {
-          // Save userId as a cookie for 7 days
+
           Cookies.set('userId', currentUser.id.toString(), { expires: 7, sameSite: 'strict' });
 
           router.push('/dashboard');
         }
       } catch (error) {
         console.error('Login failed:', error);
-        // Handle login error
+
       }
     };
 
@@ -114,6 +117,16 @@
   .login-button-form:hover {
     background-color: #0056b3;;
     color: white;
+  }
+
+  .input-container {
+    display: flex;
+
+    justify-content: space-around;
+  }
+
+  .input-container input {
+    margin-bottom: 15px;
   }
 
 </style>
