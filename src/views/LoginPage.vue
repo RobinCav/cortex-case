@@ -26,8 +26,11 @@
     
     .title-login {
         margin-top: 60px;
+        color: white;
+        text-shadow: 1px 1px 1px black;
         text-align: center;
         margin-bottom: 100px;
+        font-size: 48px;
     }
  
   </style>

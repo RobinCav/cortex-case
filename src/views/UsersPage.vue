@@ -7,20 +7,22 @@
     <LoadingSpinner v-if="isLoading" />
 
     <!-- Display the table once data is fetched -->
-    <table v-if="!isLoading">
+    <div class="table-container">
+    <table v-if="!isLoading" class="user-table">
       <thead>
-        <tr>
+        <tr class="user-table-head">
           <th @click="sortUsers('name')">Name</th>
           <th @click="sortUsers('email')">Email</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody  class="user-table-body">
         <tr v-for="user in sortedUsers" :key="user.id">
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
 </template>
 
@@ -87,3 +89,33 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+
+.user-table {
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
+  width: 50%;
+
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-table-head th {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  padding: 20px;
+}
+
+.user-table-body td{
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+</style>

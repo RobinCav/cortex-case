@@ -1,6 +1,5 @@
 <template>
-  <h1>Hey</h1>
-    <div>
+    <div class="main">
       <router-view></router-view>
     </div>
 </template>
@@ -11,6 +10,7 @@
   import LoginForm from './components/LoginForm.vue';
   import NavBar from './components/NavBar.vue';
   import LandingPage from './views/LandingPage.vue';
+
 
 
   
@@ -58,5 +58,22 @@
 </script>
   
 <style>
-  /* TODO: Styling here */
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Wix+Madefor+Display:wght@500;600;700;800&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url("../src/background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.main {
+  font-family: 'Wix Madefor Display', sans-serif;
+  width: 100%;
+
+}
 </style>
+

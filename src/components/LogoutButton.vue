@@ -5,6 +5,7 @@
   <script lang="ts">
   import { defineComponent } from 'vue';
   import { useRouter } from 'vue-router';
+  import Cookies from 'js-cookie';
   
   export default defineComponent({
     name: 'LogoutButton',
@@ -12,8 +13,9 @@
       const router = useRouter();
   
       const logout = () => {
-        // Perform any necessary logout logic here
   
+        Cookies.remove('userId');
+        
         // Navigate to the landing page
         router.push('/');
       };

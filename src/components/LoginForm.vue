@@ -38,7 +38,7 @@
 
         if (currentUser) {
           // Save userId as a cookie for 7 days
-          Cookies.set('username', currentUser.name, { expires: 7, sameSite: 'strict' });
+          Cookies.set('userId', currentUser.id.toString(), { expires: 7, sameSite: 'strict' });
 
           router.push('/dashboard');
         }
@@ -90,26 +90,29 @@
     }
     .form-container div label {
 
-        font-size: 13px;
+        font-size: 16px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px black;
         }
 
     .login-button-form {
         
-    border-width: .5px;
+    border-width: 1px;
     font-size: 15px;
     height: 40px;
     width: 100px;
     padding: 10px;
     border-radius: 5px;
     border-color: #007bff;
-    background-color: rgba(231, 229, 229, 0.695);
-    color: #007bff;
+    background-color: white;
+    color: #0056b3;
     margin-right: 15px;
     transition: background-color 0.3s, color 0.3s;
   }
   
   .login-button-form:hover {
-    background-color: #007bff;;
+    background-color: #0056b3;;
     color: white;
   }
 

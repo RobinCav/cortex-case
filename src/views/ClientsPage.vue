@@ -7,20 +7,22 @@
     <LoadingSpinner v-if="isLoading" />
 
     <!-- Display the table once data is fetched -->
-    <table v-if="!isLoading">
-      <thead>
-        <tr>
-          <th @click="sortClients('name')">Name</th>
+    <div class="table-container">
+    <table v-if="!isLoading" class="client-table">
+      <thead >
+        <tr class="client-table-head">
+          <th @click="sortClients('name')" >Name</th>
           <th @click="sortClients('defaultCampaignManager.name')">Campaign Manager</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody  class="client-table-body">
         <tr v-for="client in sortedClients" :key="client.id">
           <td>{{ client.name }}</td>
           <td>{{ client.defaultCampaignManager.name }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </template>
 
@@ -87,5 +89,35 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+
+.client-table {
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
+  width: 50%;
+
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-table-head th {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  padding: 20px;
+}
+
+.client-table-body td{
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+</style>
 
 

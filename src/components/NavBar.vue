@@ -1,11 +1,19 @@
 <template>
-    <nav>
+    <div class="align-container">
+    <nav class="nav-container">
       <ul>
-        <router-link to="/clients" :class="{ active: activeTab === 'clients' }">Clients</router-link>
-        <router-link to="/users" :class="{ active: activeTab === 'users' }">Users</router-link>
-        <router-link to="/campaigns" :class="{ active: activeTab === 'campaigns' }">Campaigns</router-link>
+        <li>
+            <router-link to="/clients" :class="{ active: activeTab === 'clients' }" class="router-link-inactive">Clients</router-link>
+        </li>
+        <li>
+            <router-link to="/users" :class="{ active: activeTab === 'users' }" class="router-link-inactive">Users</router-link>
+        </li>
+        <li>
+            <router-link to="/campaigns" :class="{ active: activeTab === 'campaigns' }" class="router-link-inactive">Campaigns</router-link>
+        </li>
       </ul>
     </nav>
+    </div>
   </template>
   
   <script lang="ts">
@@ -25,8 +33,15 @@
   
   <style scoped>
 
-  nav {
+  .align-container {
+    display: flex;
+
+  }
+  .nav-container {
     width: 400px;
+    border: solid 1px black;
+    border-top: none;
+    border-left: none;
   }
   
   ul {
@@ -34,21 +49,38 @@
     justify-content: space-around;
     list-style-type: none;
     padding: 10;
- 
-  }
-  
-  li.active {
-    background-color: #ddd;
-  }
-  
-  /* Style the router-link */
-  .router-link-active {
-    font-weight: bold;
+    background-color: white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: 0;
   }
 
+  .nav-container ul li {
+ 
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
   
-  .router-link-active:active {
+  
+  .router-link-inactive {
+    color: black;
+    text-decoration: none;
+    padding: 4px;
+  }
+  
+  .router-link-active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #0056b3
+  }
+  
+  .router-link-inactive:hover {
     background-color: #ccc;
+  }
+
+  .router-link-active:active {
+    background-color: none;
   }
   </style>
   

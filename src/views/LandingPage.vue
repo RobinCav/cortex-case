@@ -40,7 +40,6 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f8f8f8;
   }
   
   .button-container {
@@ -53,10 +52,10 @@
   .admin-button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: white;
     border: none;
     border-radius: 5px;
+    color: #0056b3;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
   }
@@ -64,16 +63,19 @@
   .login-button:hover,
   .admin-button:hover {
     background-color: #0056b3;
+    color: white;
   }
   
   .created-by {
     margin-top: 40px;
     font-size: 14px;
-    color: #555;
+    color: white;
   }
 
   .page-title {
     font-size: 60px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
   }
   </style>
   
