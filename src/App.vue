@@ -23,10 +23,11 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: auto;
   background-image: url("../src/background.jpg");
   background-size: cover;
   background-position: center;
+  padding-bottom: 80px;
 }
 
 .main {
